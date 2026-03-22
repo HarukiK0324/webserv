@@ -1,0 +1,6 @@
+print("Content-Type: text/html")
+print("Status: 200 OK")
+print()
+print("<html><body>")
+print("<h1>Hello from CGI LocalRedirect!</h1>")
+print("</body></html>")	

@@ -1,0 +1,6 @@
+Location: https://example.com/new-page
+Status: 302 Found
+Content-Type: text/plain
+
+The document has moved to https://example.com/new-page.
+Please click the link to proceed.

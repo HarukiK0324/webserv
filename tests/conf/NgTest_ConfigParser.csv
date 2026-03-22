@@ -1,0 +1,9 @@
+ID,エラーレイヤ,エラー内容（error）,文法上の問題,NG config 例,テストで確認すること,判定方法
+G-01,parser,"Expected 'server'",server ブロック以外から開始している,"location / { root /var/www; }","最初に server ブロックが無い場合に起動失敗すること","returncode != 0"
+G-02,parser,"Missing '{' after 'server'",server の後に { が無い,"server listen 8080;","server キーワードの直後に { が無い場合に起動失敗すること","returncode != 0"
+G-03,parser,"Location block requires a path",location の直後にパスが無い,"server { location { root /var/www; } }","location にパスが指定されていない場合に起動失敗すること","returncode != 0"
+G-04,parser,"Location block must start with '{'",location パスの後に { が無い,"server { location / root /var/www; }","location パスの後に { が無い場合に起動失敗すること","returncode != 0"
+G-05,parser,"Unexpected end of file in location block",location ブロックが閉じられていない,"server { location / { root /var/www; ","location ブロックが途中で EOF になった場合に起動失敗すること","returncode != 0"
+G-06,lexer,"Directive key expected",ディレクティブ名が無い,"server { ; }","ディレクティブ名が存在しない場合に起動失敗すること","returncode != 0"
+G-07,parser,"Directive requires at least one value",ディレクティブに値が無い,"server { root; }","ディレクティブに値が 1 つも無い場合に起動失敗すること","returncode != 0"
+G-08,parser,"Missing ';' at end of directive",セミコロンが無い,"server { listen 8080 }","ディレクティブ末尾に ; が無い場合に起動失敗すること","returncode != 0"

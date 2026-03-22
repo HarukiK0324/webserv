@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Webserv Demo</title>
+</head>
+
+<body>
+
+	<h1>Webserv Demonstration</h1>
+	<p>
+		This page demonstrates the features of a custom HTTP web server
+		implementing <strong>GET / POST / DELETE</strong>,
+		<strong>CGI</strong>, <strong>multiple MIME types</strong>,
+		and <strong>directory listing</strong>.
+	</p>
+
+	<hr>
+
+	<h2>1. Static Files (GET)</h2>
+	<ul>
+		<li><a href="../files/sample.txt">Text file (text/plain)</a></li>
+		<li><a href="../files/image.png">Image file (image/png)</a></li>
+		<li><a href="../files/42tokyo_pamphlet.pdf">PDF file (application/pdf)</a></li>
+	</ul>
+
+	<p>
+		Accessing these files verifies correct MIME type handling
+		and static file serving.
+	</p>
+
+	<hr>
+
+	<h2>2. Directory Listing (Autoindex)</h2>
+	<p>
+		The following link demonstrates directory listing:
+	</p>
+	<ul>
+		<li><a href="/www/">/www/ (autoindex enabled)</a></li>
+	</ul>
+
+	<hr>
+
+	<h2>3. File Upload (POST)</h2>
+	<form action="/upload" method="post" enctype="multipart/form-data">
+		<input type="file" name="file">
+		<br><br>
+		<button type="submit">Upload File</button>
+	</form>
+
+	<p>
+		Uploaded files will appear in the <code>/files/</code> directory.
+	</p>
+
+	<hr>
+
+	<!DOCTYPE html>
+	<html lang="ja">
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>DELETE Test</title>
+	</head>
+	
+	<body>
+		<h2>DELETE テスト</h2>
+	
+		<input type="text" id="targetPath" placeholder="/files/sample.txt">
+		<button type="button" onclick="sendDelete()">DELETE送信</button>
+	
+		<pre id="result"></pre>
+	
+		<script>
+			async function sendDelete() {
+				const path = document.getElementById("targetPath").value;
+				const result = document.getElementById("result");
+
+				try {
+					const res = await fetch(path, {
+						method: "DELETE"
+					});
+
+					const text = await res.text();
+
+					result.textContent =
+						"Status: " + res.status + "\n" +
+						"Response:\n" + text;
+				} catch (error) {
+					result.textContent = "Error: " + error;
+				}
+			}
+		</script>
+	</body>
+	
+	</html>
+
+	<p>
+		This button sends a DELETE request.
+	</p>
+	
+	<hr>
+
+	<h2>5. CGI Test</h2>
+	<ul>
+		<li><a href="../cgi-bin/clientRedirectResponse.py">Client Redirect</a></li>
+		<li><a href="../cgi-bin/clientRedirectResponseWithDocument.py">Client Redirect with Document</a></li>
+		<li><a href="../cgi-bin/Document_response.py">Document Response</a></li>
+		<li><a href="../cgi-bin/LocalRedirectResponse.py">Local Redirect</a></li>
+		<li><a href="../cgi-bin/TimeOut.py">CGI Timeout</a></li>
+		<li><a href="../cgi-bin/Roop1.py">CGI Loop</a></li>
+		<li><a href="../cgi-bin/echo.py?q=apple&lang=ja&page=2">Get Parameters</a></li>
+		<li><a href="../cgi-bin/GetQuery.py?q=apple&lang=ja&page=2">Get Query ?q=apple&lang=ja&page=2</a></li>
+		<li>
+			Post CGI
+			<form action="../cgi-bin/Post.py" method="post" enctype="multipart/form-data">
+				<input type="text" name="message" placeholder="Enter a message">
+				<br><br>
+				<button type="submit">POST to CGI</button>
+			</form>
+		</li>
+	</ul>
+
+	<hr>
+
+	<h2>6. Redirect Test</h2>
+	<ul>
+		<li><a href="/redirect">/redirect (configured redirect)</a></li>
+	</ul>	
+
+	<h2>Expected Behaviors</h2>
+	<ul>
+		<li>GET static files → 200 OK</li>
+		<li>POST to static files → 405 Method Not Allowed</li>
+		<li>DELETE static files → 405 Method Not Allowed</li>
+		<li>POST /cgi-bin/upload.py → file upload</li>
+		<li>DELETE /cgi-bin/delete.py → file deletion</li>
+	</ul>
+
+	<hr>
+
+	<h2> Error files </h2>
+	<ul>
+		<li><a href=".../files/not_found.txt">404 Not Found Server send error file</a></li>
+		<li><a href="../cgi-bin/Roop1.py">500 Internal Server Error Server make error file</a></li>
+	</ul>
+	<p>
+
+		<strong>Note:</strong>
+		This server strictly separates the responsibilities of the Web server
+		and Web applications (CGI).
+	</p>
+
+</body>
+
+</html>

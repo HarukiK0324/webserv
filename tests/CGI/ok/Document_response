@@ -1,0 +1,10 @@
+Content-Type: text/html; charset=UTF-8
+Status: 200 OK
+Custom-Header: Debug-Value
+
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Hello from CGI!</h1>
+</body>
+</html>

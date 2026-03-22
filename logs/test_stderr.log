@@ -1,0 +1,25 @@
+Setting error page for status code: 501
+Setting error page for status code: 501
+Setting error page for status code: 501
+Setting error page for status code: 505
+Setting error page for status code: 414
+Setting error page for status code: 431
+Setting error page for status code: 413
+Setting error page for status code: 400
+GetMethod: Requested path = /home/tohbu/5th_circle/42_webserv/var/www/
+GetMethod: Serving file /home/tohbu/5th_circle/42_webserv/var/www//html/index.html
+GetMethod: Requested path = /home/tohbu/5th_circle/42_webserv/tests/HTTP/files/forbidden.text
+GetMethod: Serving file /home/tohbu/5th_circle/42_webserv/tests/HTTP/files/forbidden.text
+GetMethod: Requested path = /home/tohbu/5th_circle/42_webserv/tests/HTTP/files/not_found.text
+Setting error page for status code: 404
+Setting custom error page for status code: 404
+Setting error page for status code: 405
+Saving uploaded data to: /home/tohbu/5th_circle/42_webserv/tests/HTTP/files/newfile.text
+Saving uploaded data to: /home/tohbu/5th_circle/42_webserv/tests/HTTP/FilesPermissionDined/newfile.text
+Setting error page for status code: 403
+Setting error page for status code: 405
+Deleting file: /home/tohbu/5th_circle/42_webserv/tests/HTTP/files/newfile.text
+Setting error page for status code: 403
+Setting error page for status code: 404
+Setting custom error page for status code: 404
+Setting error page for status code: 405
