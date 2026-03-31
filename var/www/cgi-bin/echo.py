@@ -37,6 +37,8 @@ def dump_cgi_env():
             print(f"{key}: (unset)")
         else:
             print(f"{key}: {value}")
+    pwd = os.path = os.getcwd()
+    print(f"pwd: {pwd}")
     print("=================================")
     print("body:")
     try:

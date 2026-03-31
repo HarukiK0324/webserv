@@ -1,11 +1,11 @@
-#include "../include/ServerConfig.hpp"
-#include "../include/ConfigParser.hpp"
-#include "../include/ConfigBuilder.hpp"
-#include "../include/LocationConfig.hpp"
+#include "ServerConfig.hpp"
+#include "ConfigParser.hpp"
+#include "ConfigBuilder.hpp"
+#include "LocationConfig.hpp"
 
-#include "../include/Config.hpp"
-#include "../include/Utils.hpp"
-#include "../include/PortManager.hpp"
+#include "Config.hpp"
+#include "Utils.hpp"
+#include "PortManager.hpp"
 #include <iostream>
 
 int main(int argc, char *argv[])

@@ -92,3 +92,14 @@ server {
 - [RFC 3875 – CGI/1.1 Specification](https://datatracker.ietf.org/doc/html/rfc3875)
 - [NGINX Configuration Guide](https://nginx.org/en/docs/beginners_guide.html)
 - [Beej's Guide to Network Programming](https://beej.us/guide/bgnet/)
+
+### AI Usage
+
+AI tools were used as development assistants during this project, mainly for:
+
+- Brainstorming implementation ideas and edge cases
+- Reviewing code for potential bugs and logic issues
+- Explaining HTTP/CGI-related concepts and RFC behavior
+- Improving documentation wording and readability
+
+All architecture decisions, implementation, testing, and final validation were done by the project authors.

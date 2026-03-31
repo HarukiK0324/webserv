@@ -3,29 +3,32 @@
 #include <string>
 #include <map>
 #include <vector>
-#include "../include/ConfigBuilder.hpp"
-#include "../include/ConfigParser.hpp"
-#include "../include/PortManager.hpp"
-#include "../include/ServerLoop.hpp"
-#include "../include/Utils.hpp"
+#include "ConfigBuilder.hpp"
+#include "ConfigParser.hpp"
+#include "PortManager.hpp"
+#include "ServerLoop.hpp"
+#include "Utils.hpp"
+#include <signal.h>
+#include <sys/wait.h>
 
-static void handle_sig(int sig)
+static void handle_sigchld(int sig)
 {
-	write(g_sig_pipe[WRITE_FD], &sig, sizeof(sig));
+	(void)sig;
+	while (waitpid(-1, NULL, WNOHANG) > 0)
+		;
+}
+
+static void handle_sigint(int sig)
+{
+	(void)sig;
+	server_run = 0;
 }
 
 void setup_signal()
 {
-	if (pipe(g_sig_pipe) < 0)
-	{
-		throw std::runtime_error("pipe error");
-		return;
-	}
-	signal(SIGPIPE, handle_sig);
-	signal(SIGCHLD, handle_sig);
-	fcntl(g_sig_pipe[0], F_SETFL, O_NONBLOCK);
-	fcntl(g_sig_pipe[1], F_SETFL, O_NONBLOCK);
-	signal(SIGINT, handle_sig);
+	signal(SIGPIPE, SIG_IGN);
+	signal(SIGCHLD, handle_sigchld);
+	signal(SIGINT, handle_sigint);
 }
 //課題 errnoをみて制御しているのがよろしくない。　各ファイル関連のシステムコールのエラー処理について理解する(失敗::-1　成功::0)
 int main(int argc, char *argv[])
